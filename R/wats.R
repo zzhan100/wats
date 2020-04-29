@@ -71,15 +71,12 @@ wats <- function(DV=DV, IV_list=IV_list, L=L, Total_period=Total_period,
   # Use 'glmnet' to solve Elastic Net #
   # Lambda is deterined automatically #
   #####################################
-
-  # Input from previous 2 functions
-
   Am.YX <- as.data.frame(scale(Am.yx, center = TRUE, scale = TRUE));
   # STANDARDIZE X
   Bm <- scale(bm, center = TRUE, scale = FALSE);	# AT LEAST CENTER Y
   dat1 <- as.data.frame(cbind(Am.YX,Bm))
 
-  elas <- cv.glmnet(as.matrix(Am.yx), Bm,
+  elas <- glmnet::cv.glmnet(as.matrix(Am.yx), Bm,
                     type.measure="mse",
                     intercept = TRUE,
                     alpha=alpha,family="gaussian")

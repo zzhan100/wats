@@ -1,6 +1,6 @@
 \name{wats}
 \alias{wats}
-\title{wats, World!}
+\title{ Window Adjusted Time Series}
 \usage{
 wats()
 }
