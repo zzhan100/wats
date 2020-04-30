@@ -1,7 +1,3 @@
-# Hello, world!
-#
-# This is an example function named 'hello'
-# which prints 'Hello, world!'.
 #
 # You can learn more about package authoring with RStudio at:
 #
@@ -28,11 +24,12 @@
 wats <- function(DV=DV, IV_list=IV_list, L=L, Total_period=Total_period,
                  r=r, BW=BW, alpha=alpha){
 
+    #######################
+    # Weights Calculation #
+    #######################
+
     P = length(IV_list)
     colnames(DV) <- c("value", "time_stamp")
-    ##################################################
-
-    ##################################################
 
     l1 = Total_period*(r-1)/(r^L-1) # First/shortest window size
     lags <- as.data.frame(matrix(NA,length(DV$time_stamp),L))
@@ -65,16 +62,14 @@ wats <- function(DV=DV, IV_list=IV_list, L=L, Total_period=Total_period,
       Am.yx <- cbind(Am.yx, Amatrix(DV,IV_list[[i]])) #All time lags
     }
 
-
-
   #####################################
   # Use 'glmnet' to solve Elastic Net #
   # Lambda is deterined automatically #
   #####################################
+
   Am.YX <- as.data.frame(scale(Am.yx, center = TRUE, scale = TRUE));
   # STANDARDIZE X
   Bm <- scale(bm, center = TRUE, scale = FALSE);	# AT LEAST CENTER Y
-  dat1 <- as.data.frame(cbind(Am.YX,Bm))
 
   elas <- glmnet::cv.glmnet(as.matrix(Am.yx), Bm,
                     type.measure="mse",
