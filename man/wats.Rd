@@ -1,11 +1,11 @@
 \name{wats}
 \alias{wats}
-\title{ Window Adjusted Time Series}
+\title{Window Adjusted Time Series}
 \usage{
 wats()
 }
 \description{
-Prints 'wats, world!'.
+Window adjusted methods to deal with time series.
 }
 \examples{
 wats()

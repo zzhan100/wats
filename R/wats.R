@@ -81,6 +81,6 @@ wats <- function(DV=DV, IV_list=IV_list, L=L, Total_period=Total_period,
                     intercept = TRUE,
                     alpha=alpha,family="gaussian")
   beta.hat <- coef(elas, s=elas$lambda.min)
-  beta.hat <- coef(elas, s=1)
+  # beta.hat <- coef(elas, s=1)
   return(beta.hat)
 }
