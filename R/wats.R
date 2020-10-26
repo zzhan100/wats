@@ -68,10 +68,21 @@ wats <- function(DV=DV, IV_list=IV_list, L=L, Total_period=Total_period,
   #####################################
 
   Am.YX <- as.data.frame(scale(Am.yx, center = TRUE, scale = TRUE));
+  d <-  ncol(Am.YX)/L
+  for (j in 1:L){
+        colnames(Am.YX)[j] <- paste("DV_L",j,sep="")
+  }
+
+  for (i in 1:d){
+    for (j in 1:L){
+          colnames(Am.YX)[i*L+j] <- paste("IV",i,"_L",j,sep="")
+    }
+  }
+
   # STANDARDIZE X
   Bm <- scale(bm, center = TRUE, scale = FALSE);	# AT LEAST CENTER Y
 
-  elas <- glmnet::cv.glmnet(as.matrix(Am.yx), Bm,
+  elas <- glmnet::cv.glmnet(as.matrix(Am.YX), Bm,
                     type.measure="mse",
                     intercept = TRUE,
                     alpha=alpha,family="gaussian")
