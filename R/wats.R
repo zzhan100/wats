@@ -90,9 +90,9 @@ wats <- function(DV=DV, IV_list=IV_list, L=L,
                             intercept = FALSE,
                             grouped = FALSE,
                             alpha=alpha,
-                            lambda = s,
+                            #lambda = s,
                             family="gaussian")
   #beta.hat <- coef(elas, s=elas$lambda.min)
-  beta.hat <- coef(elas)
+  beta.hat <- coef(elas,s=s)
   return(as.matrix(beta.hat))
 }
