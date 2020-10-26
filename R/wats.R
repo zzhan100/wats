@@ -22,7 +22,7 @@
 # s=0.1    # Lambda in glmnet                            #
 ##########################################################
 
-wats2 <- function(DV=DV, IV_list=IV_list, L=L,
+wats <- function(DV=DV, IV_list=IV_list, L=L,
                   Total_period=Total_period,
                   r=r, BW=BW, alpha=alpha, s=s){
 
